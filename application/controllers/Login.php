@@ -6,7 +6,7 @@ class Login extends CI_Controller {
     function __construct() {
         parent::__construct();
 
-		// $this->load->database();
+		$this->load->database();
 		// $this->load->library('session');
 
 		/* cache control */
@@ -20,6 +20,12 @@ class Login extends CI_Controller {
         $this->load->view('backend/login');
     }
 
+    function validate_login() {
+        $email = $this->input->post('email');
+        $password = $this->input->post('password');
 
+        $email_password = array('email', 'password' => sha1($password));
+        $query = $this->db->get_where('admin', $email_password)
+    }
 
 }
